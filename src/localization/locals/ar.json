@@ -1,0 +1,26 @@
+{
+  "appName": "لقيا",
+  "categoryButtons": {
+    "ballRoomButton": "قاعات",
+    "restButton": "استراحات"
+  },
+  "navigation": {
+    "tab": {
+      "homeTab": "الرئسيه",
+      "searchTab": "بحث",
+      "offersTab": "عروض",
+      "reservationTab": "حجوزات",
+      "moreTab": "المزيد"
+    },
+    "stack": {
+      "headers": {
+        "homeHeader": "%{homeTab}",
+        "searchHeader": "%{searchTab}",
+        "offersHeader": "%{offersTab}",
+        "reservationHeader": "%{reservationTab}",
+        "moreHeader": "%{moreTab}"
+      }
+    }
+  }
+
+}

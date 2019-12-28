@@ -1,0 +1,26 @@
+{
+  "appName": "loquia",
+  "categoryButtons": {
+    "ballRoomButton": "BallRooms",
+    "restButton": "Rest"
+  },
+  "navigation": {
+    "tab": {
+      "homeTab": "Home",
+      "searchTab": "Search",
+      "offersTab": "Offers",
+      "reservationTab": "Reservation",
+      "moreTab": "More"
+    },
+    "stack": {
+      "headers": {
+        "homeHeader": "%{homeTab}",
+        "searchHeader": "%{searchTab}",
+        "offersHeader": "%{offersTab}",
+        "reservationHeader": "%{reservationTab}",
+        "moreHeader": "%{moreTab}"
+      }
+    }
+  }
+
+}

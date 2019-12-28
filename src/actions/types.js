@@ -1,0 +1,12 @@
+export const EMAIL_CHANGE = 'email_change';
+export const PASSWORD_CHANGE = 'password_change';
+export const SPINNER = 'spinner';
+export const SIGN_UP_SUCCESS = 'sign_up_success';
+export const SIGN_UP_FAIL = 'sign_up_fail';
+export const ALERT_OK = 'alert_ok';
+export const ALERT_CANCEL = 'alert_cancel';
+export const LOGIN_SUCCESS = 'login_success';
+export const LOG_IN_FAIL = 'log_in_fail';
+export const CHANGE_LANGUAGE = 'change_language';
+export const DARK_THEME = 'dark_theme';
+export const LIGHT_THEME = 'light_theme';
