@@ -6,67 +6,80 @@ import { changeLanguageArabic } from '../actions/LocalizationAction';
 import { togglingTheme } from '../actions/ThemeAction';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MapView from 'react-native-maps';
 
 class HomeScreen extends Component {
-    state = {
-        Theme: this.props.theme,
-        direction: AsyncStorage.getItem('direction', (err, res) => {
-            this.state.direction = res;
-        }),
-    };
-    static navigationOptions = ({ navigation }) => ({
-        tabBarLabel: navigation => (
-            <Text
-                style={{
-                    alignSelf: 'center',
-                    color: navigation.tintColor,
-                }}>
-                {i18n.t('navigation.tab.homeTab')}
-            </Text>
-        ),
-        tabBarIcon: navigation => (
-            <Icon name={'home'} color={navigation.tintColor} size={40} />
-        ),
-    });
-    changeLanguage = (lang, dir) => {
-        this.props.changeLanguageArabic(lang, dir);
-    };
-    changeTheme = () => {
-        this.props.togglingTheme();
-    };
+   state = {
+      Theme: this.props.theme,
+      direction: AsyncStorage.getItem('direction', (err, res) => {
+         this.state.direction = res;
+      }),
+   };
+   static navigationOptions = ({ navigation }) => ({
+      tabBarLabel: navigation => (
+         <Text
+            style={{
+               alignSelf: 'center',
+               color: navigation.tintColor,
+            }}>
+            {i18n.t('navigation.tab.homeTab')}
+         </Text>
+      ),
+      tabBarIcon: navigation => (
+         <Icon name={'home'} color={navigation.tintColor} size={40} />
+      ),
+   });
+   changeLanguage = (lang, dir) => {
+      this.props.changeLanguageArabic(lang, dir);
+   };
+   changeTheme = () => {
+      this.props.togglingTheme();
+   };
 
-    render() {
-        return (
-            <View
-                style={[
-                    styles.mapContainer,
-                    {
-                        backgroundColor: this.props.theme
-                            .PRIMARY_BACKGROUND_COLOR,
-                    },
-                ]}>
-                <Button
-                    title={'arabic'}
-                    onPress={() => this.changeLanguage('ar', 'RTL')}
-                />
-                <Button
-                    title={'english'}
-                    onPress={() => this.changeLanguage('en', 'LTR')}
-                />
-                <Button
-                    title={'go to forget'}
-                    onPress={() => this.props.navigation.navigate('category')}
-                />
-                <Button
-                    title={'log out'}
-                    onPress={() => {
-                        AsyncStorage.removeItem('token', () =>
-                            this.props.navigation.navigate('login')
-                        );
-                    }}
-                />
-                <Button title={'Change theme'} onPress={this.changeTheme} />
-                <ScrollView
+   render() {
+      return (
+         <View
+            style={[
+               styles.mapContainer,
+               {
+                  backgroundColor: this.props.theme.PRIMARY_BACKGROUND_COLOR,
+               },
+            ]}>
+            <View>
+               <Button
+                  title={'arabic'}
+                  onPress={() => this.changeLanguage('ar', 'RTL')}
+               />
+               <Button
+                  title={'english'}
+                  onPress={() => this.changeLanguage('en', 'LTR')}
+               />
+               <Button
+                  title={'go to forget'}
+                  onPress={() => this.props.navigation.navigate('category')}
+               />
+               <Button
+                  title={'log out'}
+                  onPress={() => {
+                     AsyncStorage.removeItem('token', () =>
+                        this.props.navigation.navigate('login')
+                     );
+                  }}
+               />
+               <Button title={'Change theme'} onPress={this.changeTheme} />
+            </View>
+            <View style={{ width: '100%', height: 200 }}>
+               <MapView
+                  initialRegion={{
+                     latitude: 37.78825,
+                     longitude: -122.4324,
+                     latitudeDelta: 0.0922,
+                     longitudeDelta: 0.0421,
+                  }}
+                  style={{ flex: 1 }}
+               />
+            </View>
+            {/*  <ScrollView
                     contentContainerStyle={{
                         backgroundColor: 'red',
                         width: 200,
@@ -90,25 +103,26 @@ class HomeScreen extends Component {
                     <Text>hello</Text>
                     <Text>hello</Text>
                 </ScrollView>
-            </View>
-        );
-    }
+ */}
+         </View>
+      );
+   }
 }
 
 const styles = StyleSheet.create({
-    mainContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
+   mainContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+   },
 });
 const mapStateToProps = state => {
-    return {
-        theme: state.Theme.theme,
-    };
+   return {
+      theme: state.Theme.theme,
+   };
 };
 
 export default connect(
-    mapStateToProps,
-    { changeLanguageArabic, togglingTheme }
+   mapStateToProps,
+   { changeLanguageArabic, togglingTheme }
 )(HomeScreen);
